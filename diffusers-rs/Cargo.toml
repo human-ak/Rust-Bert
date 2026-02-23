@@ -1,0 +1,37 @@
+[package]
+name = "diffusers-rs"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1"
+thiserror = "2"
+regex = "1.12"
+tch = "0.23"
+torch-sys = { version = "0.23", features = ["download-libtorch"] }
+
+clap = { version = "4.5", optional = true, features = ["derive"] }
+image = { version = "0.25", optional = true }
+imageproc = { version = "0.26", optional = true }
+
+[[example]]
+name = "stable-diffusion"
+required-features = ["clap"]
+
+[[example]]
+name = "stable-diffusion-img2img"
+required-features = ["clap"]
+
+[[example]]
+name = "stable-diffusion-inpaint"
+required-features = ["clap"]
+
+[[example]]
+name = "controlnet"
+required-features = ["clap", "imageproc"]
+
+[features]
+doc-only = ["tch/doc-only"]
+
+[package.metadata.docs.rs]
+features = ["doc-only"]
